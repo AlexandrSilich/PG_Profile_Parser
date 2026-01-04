@@ -142,8 +142,8 @@ class PostgresAnalyzer:
             
             # Получаем текст запроса
             query_text = self.get_query_text(query_id)
-            query_preview = query_text[:50] if query_text else 'N/A'
-            query_preview_suffix = '...' if query_text and len(query_text) > 50 else ''
+            query_preview = query_text[:100] if query_text else 'N/A'
+            query_preview_suffix = '...' if query_text and len(query_text) > 100 else ''
             
             # Анализ I/O
             shared_blks_hit = row.get('shared_blks_hit', 0)
@@ -600,7 +600,7 @@ class PostgresAnalyzer:
             
             heavy_queries = [q for q in top_queries if q['mean_time'] > 1000]
             if heavy_queries:
-                recommendations.append(f"**Оптимизировать {len(heavy_queries)} медленных запросов** - используйте EXPLAIN ANALYZE для анализа")
+                recommendations.append(f"**Оптимизировать {len(heavy_queries)} медленных запросов**")
             
             if not recommendations:
                 recommendations.append("База данных настроена хорошо, критических рекомендаций нет")
