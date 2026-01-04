@@ -5,3 +5,5 @@ venv/
 .env
 .xlsx
 .html
+/OLD
+
